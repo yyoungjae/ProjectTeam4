@@ -1,16 +1,22 @@
-
 import pandas as pd
 import numpy as np
+import sys
 from pathlib import Path
 
 # 프로젝트 경로
 BASE_DIR = Path(__file__).resolve().parent.parent
+RESULTS_DIR = BASE_DIR / "results"
 
-# 입력 파일
-LANDMARK_PATH = BASE_DIR / "results" / "landmarks.csv"
+# 분석할 영상 이름
+VIDEO_NAME = sys.argv[1] if len(sys.argv) > 1 else "squat_test"
 
-# 출력 파일
-OUTPUT_PATH = BASE_DIR / "results" / "torso_angles.csv"
+# 입력 및 출력 파일 경로
+if VIDEO_NAME == "squat_test":
+    LANDMARK_PATH = RESULTS_DIR / "landmarks.csv"
+    OUTPUT_PATH = RESULTS_DIR / "torso_angles.csv"
+else:
+    LANDMARK_PATH = RESULTS_DIR / f"{VIDEO_NAME}_landmarks.csv"
+    OUTPUT_PATH = RESULTS_DIR / f"{VIDEO_NAME}_torso_angles.csv"
 
 # MediaPipe Landmark ID
 LEFT_SHOULDER = 11
@@ -22,10 +28,9 @@ VISIBILITY_THRESHOLD = 0.5
 
 
 def calculate_torso_angle(shoulder, hip):
-    """
-    어깨 중심과 엉덩이 중심을 연결한 선이
-    수직 방향에서 얼마나 기울어졌는지 계산한다.
-    """
+    
+    # 어깨 중심과 엉덩이 중심을 연결한 선이수직 방향에서 얼마나 기울어졌는지 계산한다.
+    
     dx = shoulder[0] - hip[0]
     dy = hip[1] - shoulder[1]
 
@@ -35,6 +40,12 @@ def calculate_torso_angle(shoulder, hip):
 
 
 def analyze_torso():
+
+    if not LANDMARK_PATH.exists():
+        raise FileNotFoundError(
+            f"랜드마크 파일을 찾을 수 없습니다: {LANDMARK_PATH}"
+        )
+
     df = pd.read_csv(LANDMARK_PATH)
 
     results = []
@@ -106,6 +117,7 @@ def analyze_torso():
     )
 
     print("\n상체 기울기 분석 완료!")
+    print(f"분석 영상: {VIDEO_NAME}")
     print(f"분석된 프레임: {len(result_df)}")
 
     if not result_df.empty:

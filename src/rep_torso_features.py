@@ -1,20 +1,36 @@
 
 import pandas as pd
+import sys
 from pathlib import Path
 
 # 프로젝트 경로
 BASE_DIR = Path(__file__).resolve().parent.parent
+RESULTS_DIR = BASE_DIR / "results"
 
-# 입력 파일
-DETECTION_PATH = BASE_DIR / "results" / "squat_detection.csv"
-TORSO_PATH = BASE_DIR / "results" / "torso_angles.csv"
-SUMMARY_PATH = BASE_DIR / "results" / "squat_summary.csv"
+# 분석할 영상 이름
+VIDEO_NAME = sys.argv[1] if len(sys.argv) > 1 else "squat_test"
 
-# 출력 파일
-OUTPUT_PATH = BASE_DIR / "results" / "rep_torso_features.csv"
+# 입력 및 출력 파일 경로
+if VIDEO_NAME == "squat_test":
+    DETECTION_PATH = RESULTS_DIR / "squat_detection.csv"
+    TORSO_PATH = RESULTS_DIR / "torso_angles.csv"
+    SUMMARY_PATH = RESULTS_DIR / "squat_summary.csv"
+    OUTPUT_PATH = RESULTS_DIR / "rep_torso_features.csv"
+else:
+    DETECTION_PATH = RESULTS_DIR / f"{VIDEO_NAME}_squat_detection.csv"
+    TORSO_PATH = RESULTS_DIR / f"{VIDEO_NAME}_torso_angles.csv"
+    SUMMARY_PATH = RESULTS_DIR / f"{VIDEO_NAME}_squat_summary.csv"
+    OUTPUT_PATH = RESULTS_DIR / f"{VIDEO_NAME}_rep_torso_features.csv"
 
 
 def extract_torso_features():
+
+    # 입력 파일 존재 확인
+    for path in [DETECTION_PATH, TORSO_PATH, SUMMARY_PATH]:
+        if not path.exists():
+            raise FileNotFoundError(
+                f"필요한 파일을 찾을 수 없습니다: {path}"
+            )
 
     # CSV 파일 불러오기
     detection_df = pd.read_csv(DETECTION_PATH)
@@ -90,8 +106,11 @@ def extract_torso_features():
     )
 
     print("\n반복별 상체 기울기 특징 추출 완료!")
+    print(f"분석 영상: {VIDEO_NAME}")
+    print(f"추출된 반복 횟수: {len(result_df)}회")
 
     if not result_df.empty:
+        print("\n반복별 분석 결과:")
         print(result_df.to_string(index=False))
     else:
         print("분석할 완료된 반복이 없습니다.")

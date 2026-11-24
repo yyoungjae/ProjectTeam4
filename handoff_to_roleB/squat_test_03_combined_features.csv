@@ -1,0 +1,4 @@
+﻿rep_id,start_angle,min_knee_angle,range_of_motion,duration_sec,descent_duration_sec,ascent_duration_sec,descent_frames,ascent_frames,mean_torso_angle,max_torso_angle,min_torso_angle,bottom_frame,bottom_torso_angle,analyzed_frames
+1,146.23,96.59,49.63,1.3,0.8,0.43,24,14,16.42,22.15,3.65,33,21.23,40
+2,147.45,92.7,54.76,1.37,0.83,0.47,25,15,15.89,21.33,3.86,105,20.66,42
+3,149.18,93.6,55.58,1.23,0.77,0.4,23,13,16.7,22.35,4.67,179,21.1,38

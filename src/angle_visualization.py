@@ -1,26 +1,28 @@
 
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 
 from pathlib import Path
 
-
-# ==========================================
-# 1. 파일 경로 설정
-# ==========================================
-
+# 기본 경로 설정
 BASE_DIR = Path(__file__).resolve().parent.parent
+RESULTS_DIR = BASE_DIR / "results"
 
-INPUT_CSV = BASE_DIR / "results" / "knee_angles.csv"
-OUTPUT_IMAGE = BASE_DIR / "results" / "knee_angle_graph.png"
+# 분석할 영상 이름 설정
+VIDEO_NAME = sys.argv[1] if len(sys.argv) > 1 else "squat_test"
 
+# 입력 및 출력 파일 경로 설정
+if VIDEO_NAME == "squat_test":
+    INPUT_CSV = RESULTS_DIR / "knee_angles.csv"
+    OUTPUT_IMAGE = RESULTS_DIR / "knee_angle_graph.png"
+else:
+    INPUT_CSV = RESULTS_DIR / f"{VIDEO_NAME}_knee_angles.csv"
+    OUTPUT_IMAGE = RESULTS_DIR / f"{VIDEO_NAME}_knee_angle_graph.png"
 
-# ==========================================
-# 2. 데이터 불러오기
-# ==========================================
-
+# 데이터 불러오기
 if not INPUT_CSV.exists():
-    raise FileNotFoundError("knee_angles.csv 파일이 없습니다.")
+    raise FileNotFoundError(f"입력 파일이 없습니다: {INPUT_CSV}")
 
 df = pd.read_csv(INPUT_CSV)
 
@@ -30,21 +32,11 @@ df = df.dropna(subset=["left_knee_angle"]).copy()
 if df.empty:
     raise ValueError("계산된 왼쪽 무릎 각도 데이터가 없습니다.")
 
-
-# ==========================================
-# 3. 시간 데이터 계산
-# ==========================================
-
-# 밀리초를 초 단위로 변환
+# 시간 및 각도 데이터
 time_seconds = df["timestamp_ms"] / 1000
-
 knee_angles = df["left_knee_angle"]
 
-
-# ==========================================
-# 4. 그래프 생성
-# ==========================================
-
+# 그래프 생성
 plt.figure(figsize=(12, 6))
 
 plt.plot(
@@ -78,30 +70,20 @@ plt.annotate(
 )
 
 # 그래프 제목 및 축 설정
-plt.title("Squat Knee Angle Analysis")
-
+plt.title(f"Squat Knee Angle Analysis - {VIDEO_NAME}")
 plt.xlabel("Time (seconds)")
 plt.ylabel("Knee Angle (degrees)")
 
 plt.ylim(0, 190)
-
 plt.grid(True, alpha=0.3)
-
 plt.legend()
-
 plt.tight_layout()
 
-
-# ==========================================
-# 5. 그래프 저장 및 표시
-# ==========================================
-
-plt.savefig(
-    OUTPUT_IMAGE,
-    dpi=150
-)
+# 그래프 저장 및 표시
+plt.savefig(OUTPUT_IMAGE, dpi=150)
 
 print("무릎 각도 그래프 생성 완료!")
+print(f"분석 영상: {VIDEO_NAME}")
 print(f"저장 위치: {OUTPUT_IMAGE}")
 
 plt.show()
