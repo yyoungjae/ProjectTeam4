@@ -1,0 +1,90 @@
+{
+  "recommendation_status": "촬영 조건 비교 경고가 있어 영상 기반 개인화 결과를 참고용으로만 사용",
+  "input_csv": "squat_test_03_combined_features.csv",
+  "baseline_profile": "/mnt/data/formfit_demo_output/personal_baseline.json",
+  "baseline": {
+    "profile_version": 1,
+    "profile_type": "provisional_personal_reference",
+    "baseline_reps": 8,
+    "source_files": [
+      "squat_test_02_combined_features.csv"
+    ],
+    "features": {
+      "range_of_motion": {
+        "median": 108.65,
+        "mean": 108.48,
+        "std": 3.8329,
+        "count": 8
+      },
+      "duration_sec": {
+        "median": 1.68,
+        "mean": 1.675,
+        "std": 0.0396,
+        "count": 8
+      },
+      "descent_duration_sec": {
+        "median": 0.88,
+        "mean": 0.895,
+        "std": 0.0207,
+        "count": 8
+      },
+      "ascent_duration_sec": {
+        "median": 0.72,
+        "mean": 0.7,
+        "std": 0.0302,
+        "count": 8
+      },
+      "mean_torso_angle": {
+        "median": 41.455,
+        "mean": 41.285,
+        "std": 1.3618,
+        "count": 8
+      },
+      "bottom_torso_angle": {
+        "median": 55.015,
+        "mean": 54.7263,
+        "std": 1.5372,
+        "count": 8
+      }
+    },
+    "warnings": [],
+    "notes": [
+      "This profile represents the user's observed reference movement, not a medically validated ideal posture.",
+      "Only combine recordings made under comparable camera and exercise conditions.",
+      "The input range_of_motion follows Role-1's definition: start_angle - min_knee_angle."
+    ]
+  },
+  "performance": {
+    "repetitions_analyzed": 3,
+    "baseline_deviation_score": 50.0,
+    "within_set_trend": {
+      "available": false,
+      "repetitions": 3,
+      "score": null,
+      "status": "반복 수 부족으로 세트 내 추세를 계산하지 않음"
+    },
+    "performance_change_score": 50.0,
+    "performance_status": "변화 관찰 필요",
+    "interpretation_note": "This score represents changes in measured movement features. It is not a direct or validated measurement of physiological fatigue."
+  },
+  "fatigue": {
+    "score": 53.33,
+    "subjective_input": 6.0,
+    "subjective_score": 55.56,
+    "performance_change_score": 50.0,
+    "method": "subjective_plus_video_provisional",
+    "note": "This is a prototype decision score, not a medical or physiological fatigue measurement."
+  },
+  "rest_recommendation": {
+    "recommended_rest_sec": 125,
+    "configured_min_rest_sec": 60,
+    "configured_max_rest_sec": 180,
+    "fatigue_score": 53.33,
+    "explanation": "입력 피로도 또는 영상상 수행 변화가 중간 수준이어서 휴식 시간을 늘려 추천했습니다.",
+    "note": "휴식 시간 범위와 계산식은 초기 프로토타입용 임시 규칙이며, 실험 데이터를 통해 조정해야 합니다."
+  },
+  "capture_warnings": [
+    "Current median ROM differs from baseline by 49.6%. Check squat depth, camera view, and recording conditions before interpreting this as performance decline.",
+    "Current median bottom torso angle differs from baseline by 33.9 degrees. Camera position/viewpoint may differ; torso-angle comparison may be unreliable."
+  ]
+}
