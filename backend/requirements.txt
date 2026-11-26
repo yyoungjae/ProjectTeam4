@@ -1,0 +1,12 @@
+fastapi==0.165.0
+uvicorn[standard]==0.54.0
+sqlalchemy==2.1.9
+pydantic-settings==2.16.3
+pyjwt==2.15.0
+bcrypt==5.0.0
+python-multipart==0.0.32
+
+# 개발용
+pytest==9.1.1
+httpx==0.28.1
+ruff==0.17.6

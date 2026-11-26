@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# 환경변수 (비밀키 들어감, 절대 올리지 않기)
+.env
+
+# DB, 업로드 영상
+*.db
+backend/uploads/
+
+# 분석 결과물, 영상, MediaPipe 모델 (용량 큼)
+/results/
+/videos/
+/models/
+*.task
+
+# 프론트
+node_modules/
+dist/
+
+# IDE
+.idea/
+.DS_Store
