@@ -1,0 +1,79 @@
+/*
+ * Base form styling adapted for FormFit
+ * From Uiverse.io by mi-series - https://uiverse.io/mi-series/spotty-goose-56
+ * MIT License, Copyright (c) mi-series (Md Mainul Islam Satabddo)
+ */
+
+.formfit .formfit-card-frame {
+  --set-form-accent: #fda308;
+  --set-form-ink: #264143;
+
+  min-width: 0;
+  padding: 24px 20px;
+  border: 1.5px solid var(--set-form-ink);
+  border-radius: 27px;
+  background: #fff1d7;
+  box-shadow: 3px 4px 0 1px var(--set-form-accent);
+}
+
+.formfit-card-frame h2 {
+  margin: 0 0 18px;
+  color: var(--set-form-ink);
+  font-size: 1.5em;
+  font-weight: 900;
+  text-align: center;
+}
+
+.formfit-set-input form {
+  width: 100%;
+  max-width: 314px;
+  margin: 0 auto;
+}
+
+.formfit .formfit-set-input label {
+  margin: 16px 0 5px;
+  font-weight: 600;
+}
+
+.formfit .formfit-set-input input,
+.formfit .formfit-set-input select {
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1.5px solid var(--set-form-ink);
+  border-radius: 9999px;
+  box-shadow: 3px 4px 0 1px var(--set-form-accent);
+  font-size: 15px;
+}
+
+.formfit-set-input input[type="file"]::file-selector-button {
+  border-width: 1.5px;
+  padding: 4px 10px;
+  margin-inline-end: 8px;
+  border-radius: 9999px;
+}
+
+.formfit .formfit-set-input input:active,
+.formfit .formfit-set-input select:active {
+  transform: translateY(4px);
+  box-shadow: 1px 2px 0 var(--set-form-accent);
+}
+
+.formfit .formfit-set-input input:focus-visible {
+  outline: 2px solid var(--set-form-ink);
+}
+
+.formfit .formfit-set-input select:focus-visible {
+  outline: none;
+}
+
+.formfit-set-input #fatigue-hint {
+  margin-top: 10px;
+  font-size: 0.875rem;
+}
+
+.formfit .formfit-set-input .formfit-analysis-button {
+  --button-accent: var(--set-form-accent);
+
+  display: block;
+  margin: 24px auto 4px;
+}

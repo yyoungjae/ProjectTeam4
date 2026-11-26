@@ -1,0 +1,36 @@
+:root {
+  --gutter: 18px;
+  --blue: #234ed6;
+  --blue-hover: #193db0;
+  --blue-text: #1d43b7;
+  --blue-tint: #e8f0ff;
+  --canvas: #f4f6f9;
+  --line: #e5eaf2;
+  --control-line: #cdd7e7;
+  --ink: #142039;
+  --muted: #4f607a;
+  color: var(--ink);
+  background: #e9edf3;
+  font: 16px/1.45 "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
+  color-scheme: light;
+  font-synthesis: none;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { min-width: 280px; margin: 0; }
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: 1.375rem; line-height: 1.25; }
+h2 { font-size: 1rem; line-height: 1.35; }
+h3 { font-size: .9375rem; }
+button, input, select, textarea { font: inherit; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
