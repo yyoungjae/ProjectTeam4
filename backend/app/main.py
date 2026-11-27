@@ -12,6 +12,7 @@ from app.core.database import Base, engine
 from app.core.errors import register_exception_handlers
 from app.users import models as user_models  # noqa: F401  (테이블 등록용 import)
 from app.users.router import router as users_router
+from app.workouts import models as workout_models  # noqa: F401  (테이블 등록용 import)
 from app.workouts.router import router as workouts_router
 
 

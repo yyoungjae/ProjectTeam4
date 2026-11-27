@@ -21,7 +21,8 @@ class ErrorCode(Enum):
     NOT_FOUND = (404, "NOT_FOUND", "대상을 찾을 수 없습니다.")
     EMAIL_TAKEN = (409, "EMAIL_TAKEN", "이미 가입된 이메일입니다.")
     INTERNAL_ERROR = (500, "INTERNAL_ERROR", "서버 오류가 발생했습니다.")
-
+    NICKNAME_TAKEN = (409, "NICKNAME_TAKEN", "이미 사용 중인 닉네임입니다.")
+    
     def __init__(self, status: int, code: str, message: str):
         self.status = status
         self.code = code

@@ -13,6 +13,8 @@ def find_by_id(db: Session, user_id: int) -> User | None:
 def find_by_email(db: Session, email: str) -> User | None:
     return db.scalar(select(User).where(User.email == email))
 
+def find_by_nickname(db: Session, nickname: str) -> User | None:
+    return db.scalar(select(User).where(User.nickname == nickname))
 
 def save(db: Session, user: User) -> User:
     db.add(user)
